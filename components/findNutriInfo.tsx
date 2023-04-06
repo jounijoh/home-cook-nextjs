@@ -1,15 +1,13 @@
-import { ChatGPTMessage, Recipe, fetchAnswer } from "@/utils/openaiStream";
+import { fetchAnswer } from "@/utils/openaiStream";
 import { marked } from "marked";
 import parse from "html-react-parser"
 import { useState } from "react";
 
 interface FindInstructionsProps {
     instructions: string
-    //getNutriInfo: (e: any) => Promise<void>;
 }
 
 export const FindNutriInfo: React.FC<FindInstructionsProps> = ({
-    //getNutriInfo
     instructions,
 }
 ) => {
@@ -17,15 +15,10 @@ export const FindNutriInfo: React.FC<FindInstructionsProps> = ({
     const [nutriInfo, setNutriInfo] = useState('')
     const [loading, setLoading] = useState(false)
 
-    /*const message: ChatGPTMessage[] =  [      {
-        role: "system",
-        content: "You are nutrional therepist. Give short list of macros and info about the nutrional values of the recipe."
-    },
-    ...body
-];*/
+
 
     const getNutriInfo = async (e: any) => {
-
+        
         const systemPrompt = "You are nutrional therepist. Give short list of macros and info about the nutrional values of the recipe."
 
         try {
@@ -36,8 +29,8 @@ export const FindNutriInfo: React.FC<FindInstructionsProps> = ({
             }
 
             const prompt = instructions
-            console.log(instructions)
-            const content = await fetchAnswer(e, systemPrompt, prompt, 'nutritions')
+
+            const content = await fetchAnswer(e, systemPrompt, prompt)
 
             if (!content) {
                 console.log("Error while fetching shopping list")

@@ -4,7 +4,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 const handler = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
     
     const prompt = req.body;
-    console.log(prompt.message);
   
     const configuration = new Configuration({
         apiKey: process.env.OPENAI_API_KEY

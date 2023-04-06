@@ -86,7 +86,6 @@ export default function Home() {
 
 
   const handleOptionSelect = (option: string) => {
-    console.log(`Selected option: ${option}`);
     setSelectedOption(option)
   };
 
