@@ -21,17 +21,18 @@ export default function Home() {
   const getRecipes = async (e: any) => {
     
     const systemPrompt = "You are homecook. Give List of 5 recipes as a list with Recipe name and single sentence description. "
-
-    const content = await fetchAnswer(e, systemPrompt, selectedOption)
-
+    
     try {
 
       setLoading(true)
+
+      const content = await fetchAnswer(e, systemPrompt, selectedOption)
 
       if (!content) {
         console.log("Error while fetching recipes")
         return
       }
+
       const listOfRecipes: string[] = content.split(/\s*\d+\.\s*/).slice(1)
   
       const recipeObjects = listOfRecipes.map(item => {
